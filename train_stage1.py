@@ -22,7 +22,7 @@ from util.blosum62_probabilistic import augment_sequence_with_second_best_mutati
 from util.Queue_ohem import OHEMQueue
 from util.focal_loss import FocalLoss
 from util.loss_light_ohem import ContrastiveLoss
-from model_att import AVP_HNCL_v3
+from model_att import AVP_Fusion
 
 # ===========================
 # Configuration
@@ -368,7 +368,7 @@ def train_and_evaluate():
     test_loader  = DataLoader(test_ds,  batch_size=BATCH_SIZE, shuffle=False, num_workers=0, pin_memory=True)
 
     print("Building model...")
-    model = AVP_HNCL_v3(ESM_DIM, ADDITIONAL_DIM, CNN_OUT_CHANNELS, LSTM_HIDDEN_DIM, NUM_CLASSES, DROPOUT_RATE).to(DEVICE)
+    model = AVP_Fusion(ESM_DIM, ADDITIONAL_DIM, CNN_OUT_CHANNELS, LSTM_HIDDEN_DIM, NUM_CLASSES, DROPOUT_RATE).to(DEVICE)
     MODEL_EMB_DIM = model.embedding_dim
     
     # Updated: Added regularization=1e-4 to match new.py

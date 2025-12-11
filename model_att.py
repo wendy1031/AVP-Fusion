@@ -50,9 +50,9 @@ class ParallelFeatureExtractorWithAttention(nn.Module):
         v_bilstm = self.bilstm_attention(lstm_out)
         return v_cnn, v_bilstm
 
-class AVP_HNCL_v3(nn.Module):
+class AVP_Fusion(nn.Module):
     def __init__(self, esm_dim, additional_dim, cnn_out_channels, lstm_hidden_dim, num_classes, dropout_rate=0.42):
-        super(AVP_HNCL_v3, self).__init__()
+        super(AVP_Fusion, self).__init__()
         
         fused_input_dim = esm_dim + additional_dim
         self.parallel_extractor = ParallelFeatureExtractorWithAttention(fused_input_dim, cnn_out_channels, lstm_hidden_dim, dropout_rate)

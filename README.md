@@ -58,7 +58,7 @@ esm2_t30_150M_UR50D/
 All Stage 1 training/testing data are stored in:
 
 ```
-dataset/Set 1/
+dataset/
 ```
 
 ---

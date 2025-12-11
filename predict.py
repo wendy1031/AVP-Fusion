@@ -8,7 +8,7 @@ import joblib
 from transformers import AutoTokenizer, AutoModel
 
 # --- Standalone Definitions ---
-from model_att import AVP_HNCL_v3
+from model_att import AVP_Fusion
 from util.data import esm_encode, generate_features_single_seq
 from util.seed import set_seed
 
@@ -45,7 +45,7 @@ def forward_with_fusion_predict(model, mil, esm_tokens, add_feats):
 def load_prediction_model(ckpt_path, additional_dim=1159, esm_dim=640):
     print(f"Loading model for prediction from {ckpt_path}...")
     
-    model = AVP_HNCL_v3(esm_dim, additional_dim, 256, 256, NUM_CLASSES, 0.0).to(DEVICE)
+    model = AVP_Fusion(esm_dim, additional_dim, 256, 256, NUM_CLASSES, 0.0).to(DEVICE)
     mil = ConvKmerMIL(esm_dim, model.embedding_dim).to(DEVICE)
     
     checkpoint = torch.load(ckpt_path, map_location=DEVICE)
